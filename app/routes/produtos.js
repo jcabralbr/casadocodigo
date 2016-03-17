@@ -8,11 +8,10 @@ module.exports = function(app){
 			database: 'casadocodigo_nodejs'	
 		});
 
-		connection.query('select * from livros', function(err, result){
+		connection.query('select * from livros', function(err, results){
+			res.send(results);
 
 		});
 		connection.end();
-		res.render("produtos/lista");
-
 	});
-}	
+}

@@ -3,18 +3,18 @@ var mysql = require('mysql');
 
 // *********************************** 
 // **  no trabalho nao tem password **
+// ** em casa:
 // ***********************************
- function createDBConnection(){
-	return mysql.createConnection({
-				host: 'localhost',
-				user: 'root',
-				password: 'root',
-				database: 'casadocodigo_nodejs'	
-			});
-}
+var connnectMYSQL = function () {
+    return mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'casadocodigo_nodejs'
+    });
+};
 
 // wrapper
-module.exports = function(){
- 	return createDBConnection;
-
- }	
+module.exports = function () {
+    return connnectMYSQL;
+}

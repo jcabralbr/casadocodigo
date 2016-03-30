@@ -1,24 +1,25 @@
-/*module.exports = function(app){
+var connection = require('./../infra/connectionFactory');
+var produtosBanco = require('./../infra/produtosBanco');
+
+module.exports = function(app){
+
 	app.get('/produtos', function(req, res){
-
-		var connection = app.infra.connectionFactory();
-
-		connection.query('select * from livros', function(err, results){
-			res.render('produtos/lista', {lista:results});
-
-		});
+		produtosBanco.lista(connection(), function(erros, resultados){
+            res.render('produtos/lista', {lista:resultados});
+        });
 		connection.end();
 	});
-}*/
+};
 
- module.exports = function(app){
-     app.get('/produtos', function(req, res){
-        var produtosBanco = app.infra.produtosBanco;
+/*
+module.exports = function(app){
+    app.get('/produtos', function(req, res){
+        var connection = app.infra.connectionFactory();
+        var produtosBanco = app.infra.produtosBanco(connection);
 
-        var callback = function(err, results){
-            res.render('produtos/lista', {lista:results});
-        };
-
-        produtosBanco.lista(app, callback);
-     });
- }
+        produtosBanco.lista(function(erros, resultados){
+            res.render('produtos/lista', {lista:resultados});
+        });
+        connection.end();
+    });
+};*/

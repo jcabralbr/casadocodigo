@@ -1,6 +1,16 @@
-exports.lista = lista;
+module.exports = function () {
+    this.lista = function (connection, callback) {
+        connection.query('select * from produtos', callback);
+    };
+    return this;
+};
 
-function lista(app, callback) {
-    var connection = app.infra.connectionFactory();
-    return connection.query('select * from produtos', callback);
-}
+/*
+ module.exports = function(){
+ return function(connection){
+ this.lista = function(callback) {
+ connection.query('select * from produtos', callback);
+ };
+ return this;
+ }
+ };*/

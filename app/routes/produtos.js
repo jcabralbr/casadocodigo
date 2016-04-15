@@ -1,11 +1,13 @@
+var connectionFactory = require('../infra/connectionFactory');
+
 module.exports = function(app){
     app.get('/produtos', function(req, res){
-        var connection = app.infra.connectionFactory();
-        var produtosBanco = new app.infra.ProdutosBanco(connection);
+        var connection = connectionFactory();
 
-        produtosBanco.lista(function(erros, resultados){
-            res.render('produtos/lista', {lista:resultados});
+        connection.query('select * from livros', function(err, results){
+            res.render('produtos/lista', {lista: results});
         });
+
         connection.end();
     });
 };

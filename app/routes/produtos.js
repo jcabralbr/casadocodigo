@@ -1,13 +1,14 @@
 var connectionFactory = require('../infra/connectionFactory');
-var produtosBanco = require('../infra/ProdutosBanco');
+var ProdutosBanco = require('../infra/ProdutosBanco');
 
 module.exports = function(app){
     app.get('/produtos', function(req, res){
         var connection = connectionFactory();
 
-        produtosBanco().lista(connection, function(err, results){
+        ProdutosBanco(connection).lista(function(err, results){
             res.render('produtos/lista', {lista: results});
         });
+
 
         connection.end();
     });

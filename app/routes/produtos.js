@@ -4,7 +4,8 @@ var ProdutosDao = require('../infra/ProdutosDao');
 module.exports = function(app){
     app.get('/produtos', function(req, res){
         var connection = connectionFactory();
-        ProdutosDao(connection).lista(function(err, results){
+        var produtosDao = new ProdutosDao(connection);
+        produtosDao.lista(function(err, results){
             res.render('produtos/lista', {lista: results});
         });
         connection.end();

@@ -1,0 +1,16 @@
+var http = require('http');
+var configuracoes = {
+    hostname: 'localhost',
+    port: '3000',
+    path: '/produtos',
+    headers: {
+        'Accept': 'application/json' //'text/html' <-- content negotiation (recebe dados no formato json)
+    }
+};
+
+http.get(configuracoes, function(res){
+    console.log(res.statusCode);
+    res.on('data', function(body){
+       console.log('corpo: ' + body);
+    });
+});

@@ -30,7 +30,17 @@ module.exports = function(app){
         req.assert('preco', 'Formato inválido').isFloat();
         var erros = req.validationErrors();
         if (erros){
-            res.render('produtos/form', {errosValidacao: erros, produto: produto});
+            //res.render('produtos/form', {errosValidacao: erros, produto: produto});
+            //return;
+
+            res.format({
+                html: function(){
+                    res.status(400).render('produtos/form', {errosValidacao: erros, produto: produto});
+                },
+                json: function(){
+                    res.status(400).json(erros);
+                }
+            });
             return;
         }
 

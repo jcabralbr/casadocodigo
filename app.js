@@ -1,6 +1,12 @@
 var app = require('./config/express')();
-var rotasProduto = require('./app/routes/produtos')(app);
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-app.listen(3000, function(){
+app.set('io', io);
+
+var rotasProduto = require('./app/routes/produtos')(app);
+var rotasPromocoes = require('./app/routes/promocoes')(app);
+
+http.listen(3000, function(){
 	console.log('servidor rodando');
 });

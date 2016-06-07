@@ -12,7 +12,7 @@ module.exports = function () {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'casadocodigo_nodejs'
+            database: 'casadocodigo_nodejs22'
         });
     }
 

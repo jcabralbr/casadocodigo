@@ -24,6 +24,20 @@ module.exports = function () {
             database: 'casadocodigo_nodejs_test'
         });
     }
+    /*
+     https://toolbelt.heroku.com/
+     executar wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh e instalar
+
+     no terminal:
+     heroku login
+     heroku help
+     heroku apps --help
+     heroku apps:create app
+     heroku addons:create cleardb:ignite // criar banco mysql
+     heroku config
+
+     git push heroku master // subir app para heroku
+     */
 
     if (process.env.NODE_ENV == 'production'){
         var urlDeConexao = process.env.CLEARDB_DATABASE_URL;

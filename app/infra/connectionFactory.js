@@ -28,12 +28,11 @@ module.exports = function () {
     if (process.env.NODE_ENV == 'production'){
         var urlDeConexao = process.env.CLEARDB_DATABASE_URL;
         var grupos = urlDeConexao.match(/mysql:\/\/(.*):(.*)@(.*)\/(.*)\?reconnect=true/);
-        return mysql.createConnection({
-            host: 'us-cdbr-iron-east-04.cleardb.net',
-            user: 'b6747ab2a36157',
-            password: 'ab29fd9e',
-            database: 'heroku_fb4df8cbbb9b98a'
+            return mysql.createConnection({
+            host: grupos[3],
+            user: grupos[1],
+            password: grupos[3],
+            database: grupos[4]
         });
     }
-
 };

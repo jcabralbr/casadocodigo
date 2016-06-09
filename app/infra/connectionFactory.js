@@ -12,7 +12,7 @@ module.exports = function () {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'casadocodigo_nodejs22'
+            database: 'casadocodigo_nodejs'
         });
     }
 
@@ -22,6 +22,17 @@ module.exports = function () {
             user: 'root',
             password: '',
             database: 'casadocodigo_nodejs_test'
+        });
+    }
+
+    if (process.env.NODE_ENV == 'production'){
+        var urlDeConexao = process.env.CLEARDB_DATABASE_URL;
+        var grupos = urlDeConexao.match(/mysql:\/\/(.*):(.*)@(.*)\/(.*)\?reconnect=true/);
+        return mysql.createConnection({
+            host: 'us-cdbr-iron-east-04.cleardb.net',
+            user: 'b6747ab2a36157',
+            password: 'ab29fd9e',
+            database: 'heroku_fb4df8cbbb9b98a'
         });
     }
 

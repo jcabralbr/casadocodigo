@@ -2,6 +2,7 @@ var app = require('./config/express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var porta = process.env.PORT || 3000;
 app.set('io', io);
 
 var rotasProduto = require('./app/routes/produtos')(app);
@@ -21,6 +22,6 @@ app.use(function(error, req, res, next){
 	next(error);
 });
 
-http.listen(3000, function(){
-	console.log('servidor rodando');
+http.listen(porta, function(){
+	console.log('servidor rodando no heroku');
 });
